@@ -50,8 +50,9 @@ class Cashier {
                     this.amount += 2.56 * quantity;
                     break;
                 case "pineapples":
-
                     break;
+                default:
+                    console.log("You enter wrong product:");
             }
 
             forward = parseInt(prompt(`DO YOU WANT TO BUY SOMETHING ELSE: PLEASE PRESS FOR YES:1, FOR NO:0   `));
