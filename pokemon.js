@@ -1,5 +1,6 @@
 var colors = require('colors');
 const prompt = require('prompt-sync')();
+//const chalkAnimation = require('chalk-animation');
 class Pokemon {
     constructor(name, health, magic) {
         this.name = name;
