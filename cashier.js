@@ -1,4 +1,5 @@
 const prompt = require('prompt-sync')();
+var colors = require('colors');
 
 class Cashier {
     constructor(amount) {
@@ -60,7 +61,7 @@ class Cashier {
         } while (forward == 1);
         tip = parseInt(prompt("PLEASE ENTER YOUR TIP AMOUNT:  "))
         this.amount += tip;
-        console.log(`The total price is: ${this.amount} €`);
+        console.log(`The total price is: ${this.amount} €`.bgBlue.yellow);
 
     }
 
@@ -70,7 +71,7 @@ class Cashier {
 
         payType = prompt(`WHICH PAYMENT TYPE DO YOU WANT TO PAY: CARD OR CASH? `)
         if (payType.toLowerCase() === "card") {
-            console.log("WARNING!*****Sorry you have insufficient credit balance, please pay cash*****");
+            console.log("WARNING!*****Sorry you have insufficient credit balance, please pay cash*****".bgRed.italic);
 
             this.calculator();
 
@@ -95,14 +96,14 @@ class Cashier {
         let fiveCents;
         let twoCents;
         let oneCent;
-        console.log(`How much do you want to give to pay for:  ${this.amount} €`);
+        console.log(`How much do you want to give to pay for:  ${this.amount} €`.bgGreen);
         cash = prompt(`Enter your cash amount here: `);
 
         if (cash < this.amount) {
-            throw new Error("You don't have enough money to buy this products. Please bring enough money")
+            throw new Error("You don't have enough money to buy this products. Please bring enough money".bgBrightRed.bold)
 
         } else if (cash === this.amount) {
-            console.log("You have made the payment in full. No remainder.")
+            console.log("You have made the payment in full. No remainder.".bgMagenta)
         } else {
 
             remain = cash - this.amount;
@@ -138,7 +139,7 @@ class Cashier {
             ${tenCents}x10 Cents
             ${fiveCents}x5 Cents
             ${twoCents}x2 Cents
-            ${oneCent}x1 Cents`)
+            ${oneCent}x1 Cents`.bgRed)
 
 
         }

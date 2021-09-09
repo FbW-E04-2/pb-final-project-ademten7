@@ -1,3 +1,4 @@
+var colors = require('colors');
 const prompt = require('prompt-sync')();
 class Pokemon {
     constructor(name, health, magic) {
@@ -20,45 +21,45 @@ class Pokemon {
         console.log(`${this.name} status:
        ----------------
         health: ${Number(this.health)}
-        magic : ${Number(this.magic)} `);
+        magic : ${Number(this.magic)} `.bgRed);
     }
 
     attack(indexOfSkills, obj) {
         let input;
         if (this.health <= 0) {
-            console.log(`${this.name} is already dead!`);
+            console.log(`${this.name} is already dead!`.america);
             return;
         }
         if (this.magic >= this.skills[indexOfSkills].requiredMagic) {
-            console.log(`${this.name} launched  ${this.skills[indexOfSkills].nameOfAttack}  attack successfully to ${obj.name}!`);
+            console.log(`${this.name} launched  ${this.skills[indexOfSkills].nameOfAttack}  attack successfully to ${obj.name}!`.bgGreen);
             this.magic -= this.skills[indexOfSkills].requiredMagic;
             obj.health -= this.skills[indexOfSkills].amountOfDamage;
             this.showStatus();
             obj.showStatus();
         } else {
-            console.log(`${this.name} has not enough magic, cannot launch attack to ${obj.name}`);
+            console.log(`${this.name} has not enough magic, cannot launch attack to ${obj.name}`.green);
             input = prompt(`Do you want to load more magic for "${this.name}". Please enter yes or no:    `)
             if (input === "yes") {
                 this.getMagic();
                 this.showStatus();
             } else {
-                console.log(`You can not use ${this.name}  any more!!!! Choose another pokemon to launch an attack. `);
+                console.log(`You can not use ${this.name}  any more!!!! Choose another pokemon to launch an attack. `.bgRed);
             }
 
 
         }
 
-
         if (obj.health <= 0) {
-            console.log(`${obj.name} is killed`);
+            console.log(`${obj.name} is killed`.rainbow);
             obj.showStatus();
         }
     }
 
     getMagic() {
 
+
         this.magic += 30;
-        console.log(`${this.name} got 30 magic back`)
+        console.log(`${this.name} got 30 magic back`.bgGreen)
         this.showStatus();
     }
 
