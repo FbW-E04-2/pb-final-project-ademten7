@@ -12,11 +12,11 @@ class BullsAndCows {
 
             //1.way to create four different digits
             this.computerArr = this.computer.filter((el, index) => el !== this.computer[index + 1] && el !== this.computer[index + 2] && el !== this.computer[index + 3]);
-            // console.log(this.computerArr)
+            // console.log(computerArr)
 
             //2. way to create four different digits
-            //bool = (this.computer[0] === this.computer[1] || this.computer[0] === this.computer[2] || this.computer[0] === this.computer[3]) ||
-            // (this.computer[1] === this.computer[2] || this.computer[1] === this.computer[3]) || (this.computer[2] === this.computer[3])
+            //bool = (computer[0] === computer[1] || computer[0] === computer[2] || computer[0] === computer[3]) ||
+            // (computer[1] === computer[2] || computer[1] === computer[3]) || (computer[2] === computer[3])
 
         } while (this.computerArr.length !== 4);
         this.computer = Number(this.computer.join(""));
@@ -25,7 +25,6 @@ class BullsAndCows {
     }
 
     numberOfUser() {
-
         let counter = 0;
         let attempt = 1;
         console.log("*******************************   LET'S START   ********************************".bgRed + "\n");
@@ -38,66 +37,53 @@ class BullsAndCows {
                 throw new Error("!!!!!! You have to enter only four digits numbers !!!!!!".red + "\n")
             }
 
-            this.bullsAndCows();
+            //this.bullsAndCows();
 
 
             //to limit number of attempts to guess the secret number
-            counter++;
-            attempt++;
-            if (attempt == 8) {
+
+            if (attempt == 7) {
                 console.log(`Last three attempt`.red);
-            } else if (attempt == 9) {
+            } else if (attempt == 8) {
                 console.log(`Last two attempt`.red);
-            } else if (attempt === 10) {
+            } else if (attempt === 9) {
                 console.log("This is the last chance. You have to find secret number. Otherwise, you will lost ".red)
             }
             if (counter == 10) {
                 throw new Error("!!!!!! You already tried 10 times. YOU LOST, COMPUTER WON!".bgRed)
             }
+            counter++;
+            attempt++;
         } while (this.computer !== this.input)
+        console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
         console.log("***************************   CONGRATULATIONS!!!! YOU WON!!!!   *************************************".rainbow + "\n")
+        console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
 
 
     }
 
-    //to show bulls and cows
     bullsAndCows() {
-
         let bulls = 0;
         let cows = 0;
 
         this.computer = String(this.computer).split("");
         this.input = String(this.input).split("");
         console.log(this.computer, this.input);
-
-        // for (let i = 0; i < 4; i++) {
-        //     if (this.computer.includes(this.input[i])) {
-        //         this.computer[i] === this.input[i] ? ++bulls : ++cows;
-        //     }
-        //compare first digit:
         if (this.computer.includes(this.input[0])) {
             this.computer[0] === this.input[0] ? bulls++ : cows++;
         }
-        //compare second digit:
         if (this.computer.includes(this.input[1])) {
             this.computer[1] === this.input[1] ? bulls++ : cows++;
         }
-        //compare third digit:
-        if (this.computer.includes(this.input[2])) {
+        if (this.computer.includes(this.input[0])) {
             this.computer[2] === this.input[2] ? bulls++ : cows++;
         }
-        //compare five digit:
         if (this.computer.includes(this.input[3])) {
             this.computer[3] === this.input[3] ? bulls++ : cows++;
         }
 
+        console.log(bulls, cows);
 
-        console.log(`******  ${bulls} bulls and ${cows} cows ***`.bgRed);
-        if (bulls >= 2) {
-            console.log(`Almost Done!!! You have ${bulls} bulls.`.red)
-
-
-        }
     }
 }
 
