@@ -3,6 +3,11 @@ const prompt = require('prompt-sync')();
 class BullsAndCows {
     computer;
     input;
+    name;
+
+    playerName() {
+        this.name = prompt("Please enter your name:   ".bgGreen);
+    }
 
     numberOfComputer() {
         let computerArr;
@@ -24,50 +29,104 @@ class BullsAndCows {
     }
 
     numberOfUser() {
+        let level;
         let attempt = 1;
         let inputArr;
-        console.log("*******************************   LET'S START   ********************************".bgRed + "\n");
+        let scoreComputer = 0;
+        let scorePlayer = 0;
+        let answer;
+
 
         do {
-            console.log(`ATTEMPT : ${attempt}`.green)
-            this.input = parseInt(prompt("PLEASE ENTER A NUMBER WHICH HAS FOUR DIFFERENT DIGITS ===>     "));
-            console.log();
-            if (this.input / 1000 < 1 || this.input / 1000 >= 10) {
-                throw new Error("!!!!!! You have to enter only four digits numbers !!!!!!".red + "\n")
+            level = parseInt(prompt(`WHICH LEVEL DO YOU WANT TO PLAY? PRESS "0" FOR EASY, PRESS "1" FOR DIFFICULT :     `.bgRed));
+            attempt = 1
+                //difficult level
+            this.numberOfComputer();
+            if (level === 1) {
+
+                console.log(`*******************************   LET'S START ${this.name}  ********************************`.bgRed + "\n");
+
+                do {
+                    console.log(`ATTEMPT : ${attempt}`.green)
+                    this.input = parseInt(prompt("PLEASE ENTER A NUMBER WHICH HAS FOUR DIFFERENT DIGITS ===>     "));
+                    console.log();
+                    if (this.input / 1000 < 1 || this.input / 1000 >= 10) {
+                        //throw new Error("!!!!!! You have to enter the   4 digit numbers  !!!!!!".red + "\n")
+                        console.log("You have to enter the number between 1000 and 9999")
+                    }
+                    this.input = String(this.input).split("");
+                    inputArr = this.input.filter((el, index) => el !== this.input[index + 1] && el !== this.input[index + 2] && el !== this.input[index + 3]);
+                    if (inputArr.length !== 4) {
+                        // throw new Error("You have to enter 4 different integer number".bgRed);
+                        console.log("You have to enter 4 different integer number".bgRed)
+                    }
+
+                    if (attempt == 7) {
+                        console.log(`Last three attempt`.red);
+                    } else if (attempt == 8) {
+                        console.log(`Last two attempt`.red);
+                    } else if (attempt === 9) {
+                        console.log("This is the last chance. You have to find secret number. Otherwise, you will lost ".red)
+                    }
+
+                    if (attempt === 10 && (this.computer.join("") !== this.input.join(""))) {
+                        // throw new Error("!!!!!! You already tried 10 times. YOU LOST, COMPUTER WON!".bgRed)
+                        break;
+                    }
+
+                    attempt++;
+
+
+                    this.bullsAndCows();
+
+                } while (this.computer.join("") !== this.input.join(""));
+
+                //easy level
+            } else if (level === 0) {
+                console.log(`*******************************   LET'S START ${this.name}  ********************************`.bgRed + "\n");
+
+                do {
+                    console.log(`ATTEMPT : ${attempt}`.green)
+                    this.input = parseInt(prompt("PLEASE ENTER A NUMBER WHICH HAS FOUR DIFFERENT DIGITS ===>     "));
+                    console.log();
+
+                    this.input = String(this.input).split("");
+                    inputArr = this.input.filter((el, index) => el !== this.input[index + 1] && el !== this.input[index + 2] && el !== this.input[index + 3]);
+                    if (inputArr.length !== 4 || this.input.length !== 4) {
+                        console.log("Please enter 4 different digit number!!!".red)
+                    }
+
+                    if (attempt === 30 && (this.computer.join("") !== this.input.join(""))) {
+                        //throw new Error("!!!!!! You already tried 30 times. YOU LOST, COMPUTER WON!".bgRed)
+                        break;
+                    }
+                    attempt++;
+
+                    this.bullsAndCows();
+
+                } while (this.computer.join("") !== this.input.join(""));
             }
-            this.input = String(this.input).split("");
-            inputArr = this.input.filter((el, index) => el !== this.input[index + 1] && el !== this.input[index + 2] && el !== this.input[index + 3]);
-            if (inputArr.length !== 4) {
-                throw new Error("You have to enter 4 different integer number".bgRed);
+            if (this.computer.join("") === this.input.join("")) {
+                scorePlayer++;
+                console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
+                console.log(`***************************   CONGRATULATIONS ${this.name}!!!! YOU WON!!!!   *************************`.rainbow + "\n")
+                console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
+
+
+            } else {
+                scoreComputer++;
+                console.log("\n" + "*****    YOU LOST, COMPUTER WON   *****".bgRed.bold);
             }
 
-            if (attempt == 7) {
-                console.log(`Last three attempt`.red);
-            } else if (attempt == 8) {
-                console.log(`Last two attempt`.red);
-            } else if (attempt === 9) {
-                console.log("This is the last chance. You have to find secret number. Otherwise, you will lost ".red)
-            }
+            console.log("\n" + `***  SCOREBOARD  ***
+--------------
+Computer: ${scoreComputer}
+${this.name}: ${scorePlayer}
+--------------`.bgBrightMagenta.bold + "\n");
+            answer = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
+        } while (answer === "yes".toLocaleLowerCase());
 
-            if (attempt === 10 && (this.computer.join("") !== this.input.join(""))) {
-                throw new Error("!!!!!! You already tried 10 times. YOU LOST, COMPUTER WON!".bgRed)
-            }
-
-            attempt++;
-
-
-            this.bullsAndCows();
-
-
-            //to limit number of attempts to guess the secret number
-
-
-        } while (this.computer.join("") !== this.input.join(""))
-        console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
-        console.log("***************************   CONGRATULATIONS!!!! YOU WON!!!!   *************************************".rainbow + "\n")
-        console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
-
-
+        console.log("\n" + "************************************     GAME OVER    ***********************************************".america)
     }
 
     bullsAndCows() {
@@ -106,5 +165,6 @@ class BullsAndCows {
 
 
 let play1 = new BullsAndCows();
-play1.numberOfComputer();
+play1.playerName();
+//play1.numberOfComputer();
 play1.numberOfUser();
