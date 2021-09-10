@@ -12,21 +12,19 @@ class BullsAndCows {
 
             //1.way to create four different digits
             this.computerArr = this.computer.filter((el, index) => el !== this.computer[index + 1] && el !== this.computer[index + 2] && el !== this.computer[index + 3]);
-            // console.log(this.computerArr)
+            // console.log(computerArr)
 
             //2. way to create four different digits
-            //bool = (this.computer[0] === this.computer[1] || this.computer[0] === this.computer[2] || this.computer[0] === this.computer[3]) ||
-            // (this.computer[1] === this.computer[2] || this.computer[1] === this.computer[3]) || (this.computer[2] === this.computer[3])
+            //bool = (computer[0] === computer[1] || computer[0] === computer[2] || computer[0] === computer[3]) ||
+            // (computer[1] === computer[2] || computer[1] === computer[3]) || (computer[2] === computer[3])
 
         } while (this.computerArr.length !== 4);
-        this.computer = Number(this.computer.join(""));
-        console.log();
+        // this.computer = Number(this.computer.join(""));
+        // console.log();
         console.log(this.computer);
     }
 
     numberOfUser() {
-
-        let counter = 0;
         let attempt = 1;
         console.log("*******************************   LET'S START   ********************************".bgRed + "\n");
 
@@ -42,64 +40,64 @@ class BullsAndCows {
 
 
             //to limit number of attempts to guess the secret number
-            counter++;
-            attempt++;
-            if (attempt == 8) {
+
+            if (attempt == 7) {
                 console.log(`Last three attempt`.red);
-            } else if (attempt == 9) {
+            } else if (attempt == 8) {
                 console.log(`Last two attempt`.red);
-            } else if (attempt === 10) {
+            } else if (attempt === 9) {
                 console.log("This is the last chance. You have to find secret number. Otherwise, you will lost ".red)
             }
-            if (counter == 10) {
+            if (attempt === 10) {
                 throw new Error("!!!!!! You already tried 10 times. YOU LOST, COMPUTER WON!".bgRed)
             }
-        } while (this.computer !== this.input)
+
+            attempt++;
+        } while (this.computer.join("") !== this.input.join(""))
+        console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
         console.log("***************************   CONGRATULATIONS!!!! YOU WON!!!!   *************************************".rainbow + "\n")
+        console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
 
 
     }
 
-    //to show bulls and cows
     bullsAndCows() {
-
         let bulls = 0;
         let cows = 0;
 
-        this.computer = String(this.computer).split("");
+
         this.input = String(this.input).split("");
         console.log(this.computer, this.input);
+        let totalDigit = 4;
+        for (let i = 0; i < totalDigit; i++) {
+            if (this.computer.includes(this.input[i])) {
+                this.computer[i] === this.input[i] ? bulls++ : cows++;
+            }
 
-        // for (let i = 0; i < 4; i++) {
-        //     if (this.computer.includes(this.input[i])) {
-        //         this.computer[i] === this.input[i] ? ++bulls : ++cows;
-        //     }
-        //compare first digit:
-        if (this.computer.includes(this.input[0])) {
-            this.computer[0] === this.input[0] ? bulls++ : cows++;
-        }
-        //compare second digit:
-        if (this.computer.includes(this.input[1])) {
-            this.computer[1] === this.input[1] ? bulls++ : cows++;
-        }
-        //compare third digit:
-        if (this.computer.includes(this.input[2])) {
-            this.computer[2] === this.input[2] ? bulls++ : cows++;
-        }
-        //compare five digit:
-        if (this.computer.includes(this.input[3])) {
-            this.computer[3] === this.input[3] ? bulls++ : cows++;
         }
 
 
-        console.log(`******  ${bulls} bulls and ${cows} cows ***`.bgRed);
-        if (bulls >= 2) {
-            console.log(`Almost Done!!! You have ${bulls} bulls.`.red)
 
+        // if (this.computer.includes(this.input[0])) {
+        //     this.computer[0] === this.input[0] ? bulls++ : cows++;
+        // }
+        // if (this.computer.includes(this.input[1])) {
+        //     this.computer[1] === this.input[1] ? bulls++ : cows++;
+        // }
+        // if (this.computer.includes(this.input[2])) {
+        //     this.computer[2] === this.input[2] ? bulls++ : cows++;
+        // }
+        // if (this.computer.includes(this.input[3])) {
+        //     this.computer[3] === this.input[3] ? bulls++ : cows++;
+        // }
 
+        console.log(`***    ${bulls} bulls and ${cows} cows   ***`.bgRed);
+        if (bulls == 3) {
+            console.log(`Almost Done!!! You have 3 bulls`.red);
         }
     }
 }
+
 
 let play1 = new BullsAndCows();
 play1.numberOfComputer();
