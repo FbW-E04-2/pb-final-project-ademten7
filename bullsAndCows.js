@@ -4,8 +4,8 @@ class BullsAndCows {
     computer;
     input;
     name;
-    book = [];
-    movie = [];
+
+
 
     playerName() {
         this.name = prompt("Please enter your name:   ".bgGreen);
