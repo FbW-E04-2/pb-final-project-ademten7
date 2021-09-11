@@ -1,3 +1,37 @@
 # PB-Final-Project
 
 You'll find the instructions for each project in the designated markdown file located in the projects directory. If you choose to do one that's not listed, you should add your own README.md.
+Shrugman
+Let's build another guessing game. One player, makes up a secret word or phrase (we will use movie titles), while the other player tries to guess the word by asking what letters it contains. However, every wrong guess brings them one step closer to losing. To indicate how many attempts are left, instead of the usual hanging man drawing, we draw the shrug emoji. It consists of exactly 10 characters:
+
+¯\_(:/)\_/¯
+Every wrong guess, draws one more piece of the emoji. If the user has already guessed this letter once, ask them for another letter, instead of couting it as a wrong guess.
+
+The secret movie title is displayed masked - every character except spaces is represented by an underscore \_. With every correct guess, all ocurrences of the letter are revealed.
+
+Once the game is over, print a list of all games played, and whether they were a win or a loss:
+
+Braveheart - win
+The Godfather - loss
+Without adding the extra feature for asking for another round, this list will always have 1 item.
+
+Requirements
+Use class: Ideally your class is unaware of the prompt or the console.
+Use require to split into separate files: you should have at least 2 files, one main file and one where the class will live.
+All changes re pushed to your Github repo.
+Extra Features
+Make use of console.clear(), so we only see the most recent state of the word and the shrugman emoji.
+Add guess categories: The user can have mutliple categories to choose from. We already have movies, let's add also books, or quotes. If they choose movies, we will ask them to guess a movie title. If they choose books, we will ask them to guess a book title.
+Ask the user to play another round with the same category.
+Optional requirements
+Use Jest to write tests your class.
+Examples
+Take a look at the examples:
+
+When the user wins a round:
+
+example win
+
+When the user loses a round:
+
+example loss

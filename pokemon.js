@@ -22,7 +22,8 @@ class Pokemon {
         console.log(`${this.name} status:
        ----------------
         health: ${Number(this.health)}
-        magic : ${Number(this.magic)} `.bgRed);
+        magic : ${Number(this.magic)} 
+        ---------------`.bgRed);
     }
 
     attack(indexOfSkills, obj) {
@@ -64,11 +65,9 @@ class Pokemon {
         this.showStatus();
     }
 
-
-
-
-
 }
+
+
 
 let charmeleon = new Pokemon("Charmeleon", 120, 100);
 let wartortle = new Pokemon("Wartortle", 100, 80);
@@ -92,35 +91,58 @@ let freezeShock = new AttackSkills("Freeze Shock", 20, 10);
 let poisonGas = new AttackSkills("Poison Gas", 30, 25);
 
 //Charmeleon skills:
-charmeleon.learnAttackSkills(flame);
 charmeleon.learnAttackSkills(eggBomb);
-charmeleon.learnAttackSkills(freezeShock);
 charmeleon.learnAttackSkills(poisonGas);
-console.log(charmeleon.skills);
+//console.log(charmeleon.skills);
 
 
 //Wartortle skills:
 wartortle.learnAttackSkills(flame);
-wartortle.learnAttackSkills(eggBomb);
 wartortle.learnAttackSkills(freezeShock);
-wartortle.learnAttackSkills(poisonGas);
+
 
 //Venasuar skills:
 venasuar.learnAttackSkills(flame);
-venasuar.learnAttackSkills(eggBomb);
-venasuar.learnAttackSkills(freezeShock);
 venasuar.learnAttackSkills(poisonGas);
 
 //Charizard skills:
-charizard.learnAttackSkills(flame);
+
 charizard.learnAttackSkills(eggBomb);
 charizard.learnAttackSkills(freezeShock);
-charizard.learnAttackSkills(poisonGas);
+
+let pokemon = charmeleon;
+let indexOfSkill;
+let enemy = wartortle;
+let forward;
+do {
+
+    indexOfSkill = parseInt(prompt("Choose skill of your pokemon:   ".bgGreen));
+    // enemy = prompt("Which pokemon do you want to attack?:    ".bgRed);
+
+    pokemon.attack(indexOfSkill, enemy);
+
+    forward = prompt(`Do you want to continue to attack ${enemy}. Enter "yes" for continue:`.bgRed + "    " + "\n");
+
+}
+while (forward === "yes")
+// let attacker;
+// let indexOfSkill;
+// let enemy;
+// let forward;
 
 
-wartortle.learnAttackSkills(eggBomb);
-venasuar.learnAttackSkills(freezeShock);
-charizard.learnAttackSkills(poisonGas);
+// do {
+//     attacker = prompt("Choose your pokemon:".bgGreen + "\n");
+//     indexOfSkill = parseInt(prompt("Choose skill of your pokemon".bgGreen + "\n"));
+//     enemy = prompt("Which pokemon do you want to attack?".bgRed + "\n");
+
+//     attacker.attack(indexOfSkill, enemy);
+//     if (attacker.magic < enemy.magic) {
+//         attacker.getMagic();
+//     }
+//     forward = prompt("Do you want to continue: enter yes for continue:".bgRed + "    " + "\n");
+
+// } while (forward === "yes")
 
 
 charmeleon.attack(0, wartortle);
