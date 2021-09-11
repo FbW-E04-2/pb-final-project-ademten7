@@ -46,6 +46,7 @@ class Pokemon {
                 this.showStatus();
             } else {
                 console.log(`You can not use ${this.name}  any more!!!! Choose another pokemon to launch an attack. `.bgRed);
+                return;
             }
 
 
@@ -116,48 +117,12 @@ let enemy = wartortle;
 let forward;
 do {
 
-    indexOfSkill = parseInt(prompt("Choose skill of your pokemon:   ".bgGreen));
+    indexOfSkill = parseInt(prompt("Choose skill of your pokemon:".bgGreen));
     // enemy = prompt("Which pokemon do you want to attack?:    ".bgRed);
 
     pokemon.attack(indexOfSkill, enemy);
 
-    forward = prompt(`Do you want to continue to attack ${enemy}. Enter "yes" for continue:`.bgRed + "    " + "\n");
+    forward = prompt(`Do you want to continue to attack. Enter "yes" for continue:`.bgRed);
 
 }
 while (forward === "yes")
-// let attacker;
-// let indexOfSkill;
-// let enemy;
-// let forward;
-
-
-// do {
-//     attacker = prompt("Choose your pokemon:".bgGreen + "\n");
-//     indexOfSkill = parseInt(prompt("Choose skill of your pokemon".bgGreen + "\n"));
-//     enemy = prompt("Which pokemon do you want to attack?".bgRed + "\n");
-
-//     attacker.attack(indexOfSkill, enemy);
-//     if (attacker.magic < enemy.magic) {
-//         attacker.getMagic();
-//     }
-//     forward = prompt("Do you want to continue: enter yes for continue:".bgRed + "    " + "\n");
-
-// } while (forward === "yes")
-
-
-charmeleon.attack(0, wartortle);
-wartortle.attack(0, charmeleon);
-wartortle.attack(0, charmeleon);
-wartortle.attack(0, charmeleon);
-
-wartortle.attack(0, charmeleon);
-
-wartortle.attack(0, charmeleon);
-//wartortle.getMagic();
-wartortle.attack(0, charmeleon);
-wartortle.attack(0, charmeleon);
-
-
-
-charmeleon.attack(0, wartortle);
-charizard.attack(0, wartortle);
