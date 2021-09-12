@@ -43,9 +43,12 @@ class Shrugman {
         let indexOfInput;
         let secretWordArr;
         let emptyWordArr;
-        let filledArr;
-        let joinedArr;
-        let counter = 0;
+        let joinedSecretWord;
+        let outerCounter = 0;
+        let alphabet = "abcdefghijklmnopqrstuvwxyz";
+        let alphabetArr = alphabet.split("");
+        let indexAlphabet;
+
 
         secretWordArr = this.secretWord.split("");
         secretWordArr.map(char => {
@@ -75,76 +78,88 @@ class Shrugman {
 
 
 
-
+            joinedSecretWord = emptyWordArr.join("");
 
             do {
-
+                console.log();
                 input = prompt("Enter a letter:".bgRed);
+                if (input === "0000") {
+                    throw new Error("Game Over".bgRed);
+                }
+                console.log();
 
                 indexOfInput = secretWordArr.indexOf(input);
-                while (indexOfInput !== -1) {
-                    emptyWordArr = emptyWordArr.fill(input, indexOfInput, indexOfInput + 1);
-                    joinedArr = emptyWordArr.join("")
+                if (indexOfInput === -1) {
+                    console.log("\n" + joinedSecretWord + "\n");
+                    outerCounter++;
+                    switch (outerCounter) {
+                        case 1:
+                            console.log(`¯`.red);
+                            break;
+                        case 2:
+                            console.log(`¯|`.red);
+                            break;
+                        case 3:
+                            console.log(`¯|_`.red);
+                            break;
+                        case 4:
+                            console.log(`¯|_(`.red);
+                            break;
+                        case 5:
+                            console.log(`¯|_(ツ`.red);
+                            break;
+                        case 6:
+                            console.log(`¯|_(ツ)`.red);
+                            break;
+                        case 7:
+                            console.log(`¯|_(ツ)_`.red);
+                            break;
+                        case 8:
+                            console.log(`¯|_(ツ)_/`.red);
+                            break;
+                        case 9:
+                            throw new Error(`*****    ¯|_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
 
-                    indexOfInput = secretWordArr.indexOf(input, indexOfInput + 1);
+                    }
+
+
+
+                } else {
+                    while (indexOfInput !== -1) {
+                        emptyWordArr = emptyWordArr.fill(input, indexOfInput, indexOfInput + 1);
+                        joinedSecretWord = emptyWordArr.join("");
+
+                        indexOfInput = secretWordArr.indexOf(input, indexOfInput + 1);
+
+
+                    }
+                    console.log("\n" + joinedSecretWord + "\n");
 
 
                 }
-                console.log(joinedArr);
+                indexAlphabet = alphabetArr.indexOf(input);
+                alphabetArr = alphabetArr.fill("_", indexAlphabet, indexAlphabet + 1);
+                console.log("\n" + alphabetArr.join("") + "\n");
 
-                // if (secretWordArr.includes(input)) {
-
-                //     indexOfInput = secretWordArr.indexOf(input, indexOfInput);
-                //     console.log(indexOfInput);
-                //     filledArr = emptyWordArr.fill(input, indexOfInput, indexOfInput + 1);
-                //     console.log(filledArr);
-
-                // }
-                // indexOfInput++;
-
-
-
-
-            } while (secretWordArr.includes(input, indexOfInput));
-            counter++;
-            switch (counter) {
-                case 1:
-                    console.log(`¯`.red);
+                if (joinedSecretWord.indexOf("-") == -1) {
+                    console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
+                    console.log(`****************************      CONGRATULATIONS YOU FOUND THE SECRET WORD     *************************`.rainbow + "\n")
+                    console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
                     break;
-                case 2:
-                    console.log(`¯|`.red);
-                    break;
-                case 3:
-                    console.log(`¯|_`.red);
-                    break;
-                case 4:
-                    console.log(`¯|_(`.red);
-                    break;
-                case 5:
-                    console.log(`¯|_(ツ`.red);
-                    break;
-                case 6:
-                    console.log(`¯|_(ツ)`.red);
-                    break;
-                case 7:
-                    console.log(`¯|_(ツ)_`.red);
-                    break;
-                case 8:
-                    console.log(`¯|_(ツ)_/`.red);
-                    break;
-                case 9:
-                    console.log(`¯|_(ツ)_/¯`.red);
-                    break;
-            }
+                }
+
+            } while (true);
 
 
 
 
-            // console.log(`¯|_(:/)_/¯`)
-            // console.log(`¯|_(ツ)_/¯`);
+
+
+
 
             forward = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
-        } while (forward === "yes".toLocaleLowerCase());
+        }
+        while (forward === "yes".toLocaleLowerCase());
 
     }
 }
