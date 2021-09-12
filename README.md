@@ -1,5 +1,9 @@
 # PB-Final-Project
 
+🤷‍♂️
+
+# SHRUGMAN
+
 You'll find the instructions for each project in the designated markdown file located in the projects directory. If you choose to do one that's not listed, you should add your own README.md.
 Shrugman
 Let's build another guessing game. One player, makes up a secret word or phrase (we will use movie titles), while the other player tries to guess the word by asking what letters it contains. However, every wrong guess brings them one step closer to losing. To indicate how many attempts are left, instead of the usual hanging man drawing, we draw the shrug emoji. It consists of exactly 10 characters:
