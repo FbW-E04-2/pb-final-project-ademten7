@@ -6,7 +6,7 @@ class Shrugman {
     secretWord;
     book = ["Inferno", "The Institute", "Billy Summer", "Clean Code", "A Slow Fire Burning", "The Noise", "Ground Zero"];
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
-    emptyWord = "";
+    emptyWord;
     //1.Enter the player name
     playerName() {
         this.name = prompt("Please enter your name:   ".bgBlue);
@@ -14,7 +14,7 @@ class Shrugman {
 
     //2.Choose title and secret word
     secretWordOfComputer() {
-        // let arr;
+
         let title = prompt("Choose your categories (book or movie):".bgRed);
 
         let index;
@@ -30,13 +30,11 @@ class Shrugman {
         }
         this.secretWord = this.secretWord.toLowerCase()
         console.log(this.secretWord);
-        // arr = "ababa".split("a");
-        //7console.log(arr);
+
 
     }
 
     guess() {
-        // this.createEmptySecretWord();
         let answer;
         let input;
         let forward;
@@ -48,31 +46,37 @@ class Shrugman {
         let alphabet = "abcdefghijklmnopqrstuvwxyz";
         let alphabetArr = alphabet.split("");
         let indexAlphabet;
-
-
-        secretWordArr = this.secretWord.split("");
-        secretWordArr.map(char => {
-
-            if (char !== " ") {
-                char = "-"
-                this.emptyWord += char
-
-            } else {
-                char = " ";
-                this.emptyWord += char;
-            }
-
-        });
-        //console.log("Type " + typeof this.emptyWord);
-
-        emptyWordArr = this.emptyWord.split("");
-        console.log(this.emptyWord);
-        console.log(secretWordArr);
-        console.log(emptyWordArr);
-
-
+        let scoreComputer = 0;
 
         do {
+            this.secretWordOfComputer();
+            this.emptyWord = "";
+
+
+
+            secretWordArr = this.secretWord.split("");
+            secretWordArr.map(char => {
+
+                if (char !== " ") {
+                    char = "-"
+                    this.emptyWord += char
+
+                } else {
+                    char = " ";
+                    this.emptyWord += char;
+                }
+
+            });
+
+
+            emptyWordArr = this.emptyWord.split("");
+            console.log(this.emptyWord);
+            console.log(secretWordArr);
+            console.log(emptyWordArr);
+
+
+
+
             //3.creating empty secret word
 
 
@@ -154,18 +158,21 @@ class Shrugman {
 
 
 
-
+            console.log("\n" + `***  SCOREBOARD  ***
+--------------
+Computer: ${scoreComputer}
+${this.name}: ${scorePlayer}
+--------------`.bgBrightMagenta.bold + "\n");
 
 
             forward = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
-        }
-        while (forward === "yes".toLocaleLowerCase());
+        } while (forward === "yes".toLocaleLowerCase());
 
     }
 }
 
 let play1 = new Shrugman();
 play1.playerName();
-play1.secretWordOfComputer();
+//play1.secretWordOfComputer();
 //console.log(play1.secretWord);
 play1.guess();
