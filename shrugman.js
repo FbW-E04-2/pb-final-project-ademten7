@@ -105,11 +105,12 @@ class Shrugman {
             //to exit from the inner loop
             loop1:
                 do {
+
                     console.log();
                     input = prompt("Enter a letter:".bgRed);
                     //to exit from the game 
                     if (input === "0000") {
-                        throw new Error("************************************     GAME OVER    ***********************************************".america);
+                        throw new Error("🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷     GAME OVER    🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷");
                     }
                     console.log();
 
@@ -119,32 +120,41 @@ class Shrugman {
                         counter++;
                         switch (counter) {
                             case 1:
-                                console.log(`¯`.red);
+                                console.log(`¯`.red + "\n");
+                                console.log("🤷")
                                 break;
                             case 2:
-                                console.log(`¯|`.red);
+                                console.log(`¯\\`.red + "\n");
+                                console.log("🤷🤷")
                                 break;
                             case 3:
-                                console.log(`¯|_`.red);
+                                console.log(`¯\\_`.red + "\n");
+                                console.log("🤷🤷🤷")
                                 break;
                             case 4:
-                                console.log(`¯|_(`.red);
+                                console.log(`¯\\_(`.red + "\n");
+                                console.log("🤷🤷🤷🤷")
                                 break;
                             case 5:
-                                console.log(`¯|_(ツ`.red);
+                                console.log(`¯\\_(ツ`.red + "\n");
+                                console.log("🤷🤷🤷🤷🤷")
                                 break;
                             case 6:
-                                console.log(`¯|_(ツ)`.red);
+                                console.log(`¯\\_(ツ)`.red + "\n");
+                                console.log("🤷🤷🤷🤷🤷🤷")
                                 break;
                             case 7:
-                                console.log(`¯|_(ツ)_`.red);
+                                console.log(`¯\\_(ツ)_`.red + "\n");
+                                console.log("🤷🤷🤷🤷🤷🤷🤷")
                                 break;
                             case 8:
-                                console.log(`¯|_(ツ)_/`.red);
+                                console.log(`¯\\_(ツ)_/`.red + "\n");
+                                console.log("🤷🤷🤷🤷🤷🤷🤷🤷")
                                 break;
                             case 9:
-                                console.log(`¯|_(ツ)_/¯`.red);
-                                //throw new Error(`*****    ¯|_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
+                                console.log(`¯\\_(ツ)_/¯`.red + "\n");
+                                console.log("🤷🤷🤷🤷🤷🤷🤷🤷🤷");
+                                //throw new Error(`*****    ¯\\_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
                                 scoreComputer++;
                                 //to exit from the inner loop
                                 break loop1;
@@ -171,14 +181,16 @@ class Shrugman {
                         console.log("\n" + joinedSecretWord + "\n");
 
 
+
                     }
                     indexAlphabet = alphabetArr.indexOf(input);
                     alphabetArr = alphabetArr.fill("_", indexAlphabet, indexAlphabet + 1);
                     console.log("\n" + alphabetArr.join("") + "\n");
 
+
                     if (joinedSecretWord.indexOf("-") == -1) {
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
-                        console.log(`****************************      CONGRATULATIONS YOU FOUND THE SECRET WORD     **********************`.rainbow + "\n")
+                        console.log(`🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷     CONGRATULATIONS YOU FOUND THE SECRET WORD     🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷`.rainbow + "\n")
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
                         scorePlayer++;
                         break;
@@ -197,7 +209,7 @@ ${this.name}: ${scorePlayer}
 --------------`.bgBrightMagenta.bold + "\n");
 
 
-            anotherRound = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
+            anotherRound = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO ==>     ".red);
         } while (anotherRound === "yes".toLocaleLowerCase());
 
     }
