@@ -59,6 +59,7 @@ class Shrugman {
         let alphabet;
         let alphabetArr;
         let indexAlphabet;
+        let guess;
 
 
         do {
@@ -75,15 +76,6 @@ class Shrugman {
 
 
             secretWordArr = this.secretWord.split("");
-
-            // emptyWordArr = secretWordArr.map(char => {
-            //     if (char !== " ") {
-            //         char = "-";
-            //     } else {
-            //         char = " ";
-            //     }
-            //     return char;
-            // });
 
             secretWordArr.map(char => {
                 if (char !== " ") {
@@ -185,13 +177,20 @@ class Shrugman {
 
 
 
+
                     }
                     indexAlphabet = alphabetArr.indexOf(input);
                     alphabetArr = alphabetArr.fill("🤐", indexAlphabet, indexAlphabet + 1);
                     console.log("\n" + alphabetArr.join("") + "\n");
 
+                    guess = prompt("DO YOU WANT TO GUESS THE TITLE:".bgRed);
+                    // if (guess.toLowerCase() === this.secretWord.toLowerCase()) {
+                    //     console.log("PERFECT");
+                    //     break loop1;
 
-                    if (joinedSecretWord.indexOf("🔒") == -1) {
+                    // }
+
+                    if (joinedSecretWord.indexOf("🔒") == -1 || (guess.toLowerCase() === this.secretWord.toLowerCase())) {
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
                         console.log("🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "      CONGRATULATIONS YOU FOUND THE SECRET WORD      ".rainbow + " 🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "\n")
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
@@ -200,16 +199,6 @@ class Shrugman {
                     }
 
                 } while (true);
-
-
-
-
-
-            //             console.log(`\n                    ***********************  SCOREBOARD  ***********************
-            // --------------
-            // Computer: ${this.scoreComputer}
-            // ${this.name}: ${this.scorePlayer}
-            // --------------`.bgBrightMagenta.bold + "\n");
 
             this.score();
 
@@ -236,8 +225,15 @@ COMPUTER: ${scoreComputerEmoji}
 ${this.name.toUpperCase()}: ${scorePlayerEmoji}
 --------------`.bgBrightMagenta.bold + "\n");
 
-
     }
+
+    // guess() {
+    //     let guess = prompt("\n" + "DO YOU WANT TO GUESS THE TITLE:".bgRed + "   " + "\n")
+    //     if (guess.toLowerCase() === this.secretWord.toLowerCase()) {
+    //         console.log("PERFECT");
+
+    //     }
+    // }
 }
 
 let play1 = new Shrugman();
