@@ -4,7 +4,6 @@ class Shrugman {
     name;
     input;
     secretWord;
-    emptyWord;
     book = ["Inferno", "The Institute", "Billy Summer", "Clean Code", "A Slow Fire Burning", "The Noise", "Ground Zero"];
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
     city = ["Kathmandu", "Tehran", "Berlin", "Ankara", "Bucharest", "Brasilia", "Mogadishu", "Valletta"]
@@ -69,27 +68,22 @@ class Shrugman {
             alphabetArr = alphabet.split("");
 
             this.secretWordOfComputer();
-            this.emptyWord = "";
+
 
 
 
             secretWordArr = this.secretWord.split("");
-            secretWordArr.map(char => {
 
+            emptyWordArr = secretWordArr.map(char => {
                 if (char !== " ") {
-                    char = "-"
-                    this.emptyWord += char
-
+                    char = "-";
                 } else {
                     char = " ";
-                    this.emptyWord += char;
                 }
-
+                return char;
             });
 
 
-            emptyWordArr = this.emptyWord.split("");
-            console.log(this.emptyWord);
             // console.log(secretWordArr);
             //console.log(emptyWordArr);
 
@@ -97,11 +91,8 @@ class Shrugman {
 
 
             //3.creating empty secret word
-
-
-
-
             joinedSecretWord = emptyWordArr.join("");
+            console.log(joinedSecretWord);
             //to exit from the inner loop
             loop1:
                 do {
