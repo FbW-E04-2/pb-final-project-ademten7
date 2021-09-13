@@ -62,6 +62,7 @@ class Shrugman {
 
 
         do {
+            emptyWordArr = [];
             console.log("\n" + "😎😎😎😎😎😎😎😎😎😎😎😎" + `   LET'S START ${this.name}    `.bgRed + "😎😎😎😎😎😎😎😎😎😎 " + "\n");
             counter = 0;
             //to get a new alphabet for each iteration
@@ -75,13 +76,23 @@ class Shrugman {
 
             secretWordArr = this.secretWord.split("");
 
-            emptyWordArr = secretWordArr.map(char => {
+            // emptyWordArr = secretWordArr.map(char => {
+            //     if (char !== " ") {
+            //         char = "-";
+            //     } else {
+            //         char = " ";
+            //     }
+            //     return char;
+            // });
+
+            secretWordArr.map(char => {
                 if (char !== " ") {
-                    char = "-";
+                    emptyWordArr.push("🔒");
                 } else {
-                    char = " ";
+                    emptyWordArr.push(" ");
                 }
-                return char;
+                return emptyWordArr;
+
             });
 
 
@@ -180,7 +191,7 @@ class Shrugman {
                     console.log("\n" + alphabetArr.join("") + "\n");
 
 
-                    if (joinedSecretWord.indexOf("-") == -1) {
+                    if (joinedSecretWord.indexOf("🔒") == -1) {
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
                         console.log("🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "      CONGRATULATIONS YOU FOUND THE SECRET WORD      ".rainbow + " 🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "\n")
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
