@@ -61,7 +61,7 @@ class Shrugman {
         let scorePlayer = 0;
 
         do {
-            console.log(`*******************************   LET'S START ${this.name}  ********************************`.bgRed + "\n");
+            console.log("\n" + "😎😎😎😎😎😎😎😎😎😎😎😎" + `   LET'S START ${this.name}    `.bgRed + "😎😎😎😎😎😎😎😎😎😎 " + "\n");
             counter = 0;
             //to get a new alphabet for each iteration
             alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
@@ -136,11 +136,11 @@ class Shrugman {
                                 break;
                             case 7:
                                 console.log(`¯\\_(ツ)_`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷🤷🤷")
+                                console.log("🤷🤷🤷🤷🤷🤷🤷" + "  😨😨😨 LAST  2 CHANCE  😨😨😨  ".red)
                                 break;
                             case 8:
                                 console.log(`¯\\_(ツ)_/`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷🤷🤷🤷")
+                                console.log("🤷🤷🤷🤷🤷🤷🤷🤷" + "  😰😰😰😰😰  LAST CHANCE 😰😰😰😰😰  ".red)
                                 break;
                             case 9:
                                 console.log(`¯\\_(ツ)_/¯`.red + "\n");
@@ -175,13 +175,13 @@ class Shrugman {
 
                     }
                     indexAlphabet = alphabetArr.indexOf(input);
-                    alphabetArr = alphabetArr.fill("_", indexAlphabet, indexAlphabet + 1);
+                    alphabetArr = alphabetArr.fill("🤐", indexAlphabet, indexAlphabet + 1);
                     console.log("\n" + alphabetArr.join("") + "\n");
 
 
                     if (joinedSecretWord.indexOf("-") == -1) {
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
-                        console.log(`🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷     CONGRATULATIONS YOU FOUND THE SECRET WORD     🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷`.rainbow + "\n")
+                        console.log("🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "      CONGRATULATIONS YOU FOUND THE SECRET WORD      ".rainbow + " 🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "\n")
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
                         scorePlayer++;
                         break;
