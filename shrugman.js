@@ -4,6 +4,8 @@ class Shrugman {
     name;
     input;
     secretWord;
+    scoreComputer = 0;
+    scorePlayer = 0;
     book = ["Inferno", "The Institute", "Billy Summer", "Clean Code", "A Slow Fire Burning", "The Noise", "Ground Zero"];
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
     city = ["Kathmandu", "Tehran", "Berlin", "Ankara", "Bucharest", "Brasilia", "Mogadishu", "Valletta"]
@@ -57,8 +59,7 @@ class Shrugman {
         let alphabet;
         let alphabetArr;
         let indexAlphabet;
-        let scoreComputer = 0;
-        let scorePlayer = 0;
+
 
         do {
             console.log("\n" + "😎😎😎😎😎😎😎😎😎😎😎😎" + `   LET'S START ${this.name}    `.bgRed + "😎😎😎😎😎😎😎😎😎😎 " + "\n");
@@ -146,7 +147,7 @@ class Shrugman {
                                 console.log(`¯\\_(ツ)_/¯`.red + "\n");
                                 console.log("🤷🤷🤷🤷🤷🤷🤷🤷🤷");
                                 //throw new Error(`*****    ¯\\_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
-                                scoreComputer++;
+                                this.scoreComputer++;
                                 //to exit from the inner loop
                                 break loop1;
                         }
@@ -183,7 +184,7 @@ class Shrugman {
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
                         console.log("🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "      CONGRATULATIONS YOU FOUND THE SECRET WORD      ".rainbow + " 🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳" + "\n")
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
-                        scorePlayer++;
+                        this.scorePlayer++;
                         break;
                     }
 
@@ -193,15 +194,37 @@ class Shrugman {
 
 
 
-            console.log(`\n                    ***********************  SCOREBOARD  ***********************
---------------
-Computer: ${scoreComputer}
-${this.name}: ${scorePlayer}
---------------`.bgBrightMagenta.bold + "\n");
+            //             console.log(`\n                    ***********************  SCOREBOARD  ***********************
+            // --------------
+            // Computer: ${this.scoreComputer}
+            // ${this.name}: ${this.scorePlayer}
+            // --------------`.bgBrightMagenta.bold + "\n");
+
+            this.score();
 
 
             anotherRound = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO ==>     ".red);
         } while (anotherRound === "yes".toLocaleLowerCase());
+
+    }
+
+    score() {
+        let scoreComputerEmoji = "";
+        let scorePlayerEmoji = "";
+        for (let i = 0; i < this.scoreComputer; i++) {
+            scoreComputerEmoji += "🤷";
+
+        }
+        for (let i = 0; i < this.scorePlayer; i++) {
+            scorePlayerEmoji += "🤷";
+        }
+
+        console.log(`\n                    ***********************  SCOREBOARD  ***********************
+--------------
+COMPUTER: ${scoreComputerEmoji}
+${this.name.toUpperCase()}: ${scorePlayerEmoji}
+--------------`.bgBrightMagenta.bold + "\n");
+
 
     }
 }
