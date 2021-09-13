@@ -1,12 +1,14 @@
 var colors = require('colors');
 const prompt = require('prompt-sync')();
 class Shrugman {
-
+    name;
     input;
     secretWord;
+    emptyWord;
     book = ["Inferno", "The Institute", "Billy Summer", "Clean Code", "A Slow Fire Burning", "The Noise", "Ground Zero"];
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
-    emptyWord;
+    city = ["Kathmandu", "Tehran", "Berlin", "Ankara", "Bucharest", "Brasilia", "Mogadishu", "Valletta"]
+
     //1.Enter the player name
     playerName() {
         this.name = prompt("Please enter your name:   ".bgBlue);
@@ -15,40 +17,56 @@ class Shrugman {
     //2.Choose title and secret word
     secretWordOfComputer() {
 
-        let title = prompt("Choose your categories (book or movie):".bgRed);
+        let title = prompt("Choose your categories (book, movie or city):".bgRed);
 
         let index;
         if (title === "book") {
             index = Math.floor(Math.random() * this.book.length);
-            console.log(index);
+            //console.log(index);
             this.secretWord = this.book[index];
 
-        } else {
+        } else if (title === "movie") {
             index = Math.floor(Math.random() * this.movie.length);
-            console.log(index);
+            //console.log(index);
             this.secretWord = this.movie[index];
+        } else if (title === "city") {
+            index = Math.floor(Math.random() * this.city.length);
+            //console.log(index);
+            this.secretWord = this.city[index];
+
+        } else {
+            throw new Error("Please enter a correct name of the categories".bgRed);
         }
+
         this.secretWord = this.secretWord.toLowerCase()
         console.log(this.secretWord);
 
 
     }
 
-    guess() {
-        let answer;
+    play() {
+        this.playerName();
+
         let input;
-        let forward;
+        let anotherRound;
         let indexOfInput;
         let secretWordArr;
         let emptyWordArr;
         let joinedSecretWord;
-        let outerCounter = 0;
-        let alphabet = "abcdefghijklmnopqrstuvwxyz";
-        let alphabetArr = alphabet.split("");
+        let counter;
+        let alphabet;
+        let alphabetArr;
         let indexAlphabet;
         let scoreComputer = 0;
+        let scorePlayer = 0;
 
         do {
+            console.log(`*******************************   LET'S START ${this.name}  ********************************`.bgRed + "\n");
+            counter = 0;
+            //to get a new alphabet for each iteration
+            alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
+            alphabetArr = alphabet.split("");
+
             this.secretWordOfComputer();
             this.emptyWord = "";
 
@@ -71,8 +89,8 @@ class Shrugman {
 
             emptyWordArr = this.emptyWord.split("");
             console.log(this.emptyWord);
-            console.log(secretWordArr);
-            console.log(emptyWordArr);
+            // console.log(secretWordArr);
+            //console.log(emptyWordArr);
 
 
 
@@ -83,96 +101,109 @@ class Shrugman {
 
 
             joinedSecretWord = emptyWordArr.join("");
+            //to exit from the inner loop
+            loop1:
+                do {
+                    console.log();
+                    input = prompt("Enter a letter:".bgRed);
+                    //to exit from the game 
+                    if (input === "0000") {
+                        throw new Error("************************************     GAME OVER    ***********************************************".america);
+                    }
+                    console.log();
 
-            do {
-                console.log();
-                input = prompt("Enter a letter:".bgRed);
-                if (input === "0000") {
-                    throw new Error("Game Over".bgRed);
-                }
-                console.log();
+                    indexOfInput = secretWordArr.indexOf(input);
+                    if (indexOfInput === -1) {
+                        console.log("\n" + joinedSecretWord + "\n");
+                        counter++;
+                        switch (counter) {
+                            case 1:
+                                console.log(`¯`.red);
+                                break;
+                            case 2:
+                                console.log(`¯|`.red);
+                                break;
+                            case 3:
+                                console.log(`¯|_`.red);
+                                break;
+                            case 4:
+                                console.log(`¯|_(`.red);
+                                break;
+                            case 5:
+                                console.log(`¯|_(ツ`.red);
+                                break;
+                            case 6:
+                                console.log(`¯|_(ツ)`.red);
+                                break;
+                            case 7:
+                                console.log(`¯|_(ツ)_`.red);
+                                break;
+                            case 8:
+                                console.log(`¯|_(ツ)_/`.red);
+                                break;
+                            case 9:
+                                console.log(`¯|_(ツ)_/¯`.red);
+                                //throw new Error(`*****    ¯|_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
+                                scoreComputer++;
+                                //to exit from the inner loop
+                                break loop1;
+                        }
 
-                indexOfInput = secretWordArr.indexOf(input);
-                if (indexOfInput === -1) {
-                    console.log("\n" + joinedSecretWord + "\n");
-                    outerCounter++;
-                    switch (outerCounter) {
-                        case 1:
-                            console.log(`¯`.red);
-                            break;
-                        case 2:
-                            console.log(`¯|`.red);
-                            break;
-                        case 3:
-                            console.log(`¯|_`.red);
-                            break;
-                        case 4:
-                            console.log(`¯|_(`.red);
-                            break;
-                        case 5:
-                            console.log(`¯|_(ツ`.red);
-                            break;
-                        case 6:
-                            console.log(`¯|_(ツ)`.red);
-                            break;
-                        case 7:
-                            console.log(`¯|_(ツ)_`.red);
-                            break;
-                        case 8:
-                            console.log(`¯|_(ツ)_/`.red);
-                            break;
-                        case 9:
-                            throw new Error(`*****    ¯|_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
+
+
+
+                    } else {
+                        while (indexOfInput !== -1) {
+                            //convert Upper Case of the first letters
+                            if (indexOfInput === 0 || (emptyWordArr[indexOfInput - 1] === " ")) {
+                                emptyWordArr = emptyWordArr.fill(input.toUpperCase(), indexOfInput, indexOfInput + 1);
+                            } else {
+                                emptyWordArr = emptyWordArr.fill(input, indexOfInput, indexOfInput + 1);
+                            }
+
+                            joinedSecretWord = emptyWordArr.join("");
+
+                            indexOfInput = secretWordArr.indexOf(input, indexOfInput + 1);
+
+
+                        }
+                        console.log("\n" + joinedSecretWord + "\n");
+
 
                     }
+                    indexAlphabet = alphabetArr.indexOf(input);
+                    alphabetArr = alphabetArr.fill("_", indexAlphabet, indexAlphabet + 1);
+                    console.log("\n" + alphabetArr.join("") + "\n");
 
-
-
-                } else {
-                    while (indexOfInput !== -1) {
-                        emptyWordArr = emptyWordArr.fill(input, indexOfInput, indexOfInput + 1);
-                        joinedSecretWord = emptyWordArr.join("");
-
-                        indexOfInput = secretWordArr.indexOf(input, indexOfInput + 1);
-
-
+                    if (joinedSecretWord.indexOf("-") == -1) {
+                        console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
+                        console.log(`****************************      CONGRATULATIONS YOU FOUND THE SECRET WORD     **********************`.rainbow + "\n")
+                        console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
+                        scorePlayer++;
+                        break;
                     }
-                    console.log("\n" + joinedSecretWord + "\n");
 
-
-                }
-                indexAlphabet = alphabetArr.indexOf(input);
-                alphabetArr = alphabetArr.fill("_", indexAlphabet, indexAlphabet + 1);
-                console.log("\n" + alphabetArr.join("") + "\n");
-
-                if (joinedSecretWord.indexOf("-") == -1) {
-                    console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
-                    console.log(`****************************      CONGRATULATIONS YOU FOUND THE SECRET WORD     *************************`.rainbow + "\n")
-                    console.log(`------------------------------------------------------------------------------------------------------`.rainbow)
-                    break;
-                }
-
-            } while (true);
+                } while (true);
 
 
 
 
 
-            console.log("\n" + `***  SCOREBOARD  ***
+            console.log("\n" + `                                          ***  SCOREBOARD  ***
 --------------
 Computer: ${scoreComputer}
 ${this.name}: ${scorePlayer}
 --------------`.bgBrightMagenta.bold + "\n");
 
 
-            forward = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
-        } while (forward === "yes".toLocaleLowerCase());
+            anotherRound = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
+        } while (anotherRound === "yes".toLocaleLowerCase());
 
     }
 }
 
 let play1 = new Shrugman();
-play1.playerName();
+//play1.playerName();
 //play1.secretWordOfComputer();
 //console.log(play1.secretWord);
-play1.guess();
+play1.play();

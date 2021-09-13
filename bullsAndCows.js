@@ -18,7 +18,7 @@ class BullsAndCows {
 
             //1.way to create four different digits
             computerArr = this.computer.filter((el, index) => el !== this.computer[index + 1] && el !== this.computer[index + 2] && el !== this.computer[index + 3]);
-            // console.log(computerArr)
+
 
             //2. way to create four different digits
             //bool = (computer[0] === computer[1] || computer[0] === computer[2] || computer[0] === computer[3]) ||
@@ -36,7 +36,7 @@ class BullsAndCows {
         let inputArr;
         let scoreComputer = 0;
         let scorePlayer = 0;
-        let answer;
+        let anotherRound;
 
 
         do {
@@ -51,6 +51,10 @@ class BullsAndCows {
                 do {
                     console.log(`ATTEMPT : ${attempt}`.green)
                     this.input = parseInt(prompt("PLEASE ENTER A NUMBER WHICH HAS FOUR DIFFERENT DIGITS ===>     "));
+                    //to exit from the game 
+                    if (this.input === 0) {
+                        throw new Error("************************************     GAME OVER    ***********************************************".america);
+                    }
                     console.log();
                     if (this.input / 1000 < 1 || this.input / 1000 >= 10) {
                         //throw new Error("!!!!!! You have to enter the   4 digit numbers  !!!!!!".red + "\n")
@@ -89,7 +93,11 @@ class BullsAndCows {
 
                 do {
                     console.log(`ATTEMPT : ${attempt}`.green)
-                    this.input = parseInt(prompt("PLEASE ENTER A NUMBER WHICH HAS FOUR DIFFERENT DIGITS ===>     "));
+                    this.input = parseInt(prompt("PLEASE ENTER A NUMBER WHICH HAS FOUR DIFFERENT DIGITS. ===>     "));
+                    //to exit from the game 
+                    if (this.input === 0) {
+                        throw new Error("************************************     GAME OVER    ***********************************************".america);
+                    }
                     console.log();
 
                     this.input = String(this.input).split("");
@@ -125,8 +133,8 @@ class BullsAndCows {
 Computer: ${scoreComputer}
 ${this.name}: ${scorePlayer}
 --------------`.bgBrightMagenta.bold + "\n");
-            answer = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
-        } while (answer === "yes".toLocaleLowerCase());
+            anotherRound = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO".red)
+        } while (anotherRound === "yes".toLocaleLowerCase());
 
         console.log("\n" + "************************************     GAME OVER    ***********************************************".america)
     }
@@ -145,18 +153,6 @@ ${this.name}: ${scorePlayer}
             }
         }
 
-        // if (this.computer.includes(this.input[0])) {
-        //     this.computer[0] === this.input[0] ? bulls++ : cows++;
-        // }
-        // if (this.computer.includes(this.input[1])) {
-        //     this.computer[1] === this.input[1] ? bulls++ : cows++;
-        // }
-        // if (this.computer.includes(this.input[2])) {
-        //     this.computer[2] === this.input[2] ? bulls++ : cows++;
-        // }
-        // if (this.computer.includes(this.input[3])) {
-        //     this.computer[3] === this.input[3] ? bulls++ : cows++;
-        // }
 
         console.log(`***    ${bulls} bulls and ${cows} cows   ***`.bgRed);
         if (bulls == 3) {
