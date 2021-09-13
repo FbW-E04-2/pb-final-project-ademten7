@@ -37,9 +37,10 @@ class Shrugman {
         } else {
             throw new Error("Please enter a correct name of the categories".bgRed);
         }
+        console.log(this.secretWord);
 
         this.secretWord = this.secretWord.toLowerCase()
-        console.log(this.secretWord);
+
 
 
     }
@@ -189,7 +190,7 @@ class Shrugman {
 
 
 
-            console.log("\n" + `                                          ***  SCOREBOARD  ***
+            console.log(`\n                    ***********************  SCOREBOARD  ***********************
 --------------
 Computer: ${scoreComputer}
 ${this.name}: ${scorePlayer}
