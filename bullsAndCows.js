@@ -166,3 +166,14 @@ let play1 = new BullsAndCows();
 play1.playerName();
 //play1.numberOfComputer();
 play1.numberOfUser();
+
+
+// secretWordArr.map(char => {
+//     if (char !== " ") {
+//         emptyWordArr.push("🔒")
+//     } else {
+//         emptyWordArr.push(" ");
+//     }
+//     return emptyWordArr;
+
+// });
