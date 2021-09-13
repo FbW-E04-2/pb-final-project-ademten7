@@ -9,7 +9,18 @@
 </head>
 
 <body>
-    <script src="cashier.js"></script>
+    <h2>JavaScript HTML DOM</h2>
+    <!-- element -->
+    <p id="intro">Finding HTML Elements by Id</p>
+    <p>This example demonstrates the <b>getElementsById</b> method.</p>
+
+    <p id="demo"></p>
+    <script>
+        //document.getElementById("demo").innerHTML = "Hello World"; //<p id="demo">Hello World</p>
+        const element = document.getElementById("intro");
+        document.getElementById("demo").innerHTML =
+            "The text of demo id is: " + element.innerHTML;
+    </script>
 </body>
 
 </html>

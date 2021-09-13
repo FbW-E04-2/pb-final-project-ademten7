@@ -184,11 +184,7 @@ class Shrugman {
                     console.log("\n" + alphabetArr.join("") + "\n");
 
                     guess = prompt("DO YOU WANT TO GUESS THE TITLE:".bgRed);
-                    // if (guess.toLowerCase() === this.secretWord.toLowerCase()) {
-                    //     console.log("PERFECT");
-                    //     break loop1;
 
-                    // }
 
                     if (joinedSecretWord.indexOf("🔒") == -1 || (guess.toLowerCase() === this.secretWord.toLowerCase())) {
                         console.log(`------------------------------------------------------------------------------------------------------`.rainbow + "\n")
@@ -227,13 +223,6 @@ ${this.name.toUpperCase()}: ${scorePlayerEmoji}
 
     }
 
-    // guess() {
-    //     let guess = prompt("\n" + "DO YOU WANT TO GUESS THE TITLE:".bgRed + "   " + "\n")
-    //     if (guess.toLowerCase() === this.secretWord.toLowerCase()) {
-    //         console.log("PERFECT");
-
-    //     }
-    // }
 }
 
 let play1 = new Shrugman();
