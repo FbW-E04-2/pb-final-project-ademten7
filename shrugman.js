@@ -1,3 +1,20 @@
+/*
+
+RULES OF THE GAME:
+---One player, makes up a secret word or phrase 
+while the other player tries to guess the word by asking what letters it contains. 
+
+---Every wrong guess brings them one step closer to losing and we draw the shrug emoji.
+It consists of exactly 10 characters:
+
+
+----If the user has already guessed this letter once, ask them for another letter.
+
+---The secret title is displayed masked - every character except spaces is represented by a 🔒.
+
+---if you use any letter, it is removed from the alphabet to prevent the duplicate using.
+
+*/
 var colors = require('colors');
 const prompt = require('prompt-sync')();
 class Shrugman {
@@ -38,9 +55,10 @@ class Shrugman {
             this.secretWord = this.city[index];
 
         } else {
+            //You have to enter correct title
             throw new Error("Please enter a correct name of the categories".bgRed);
         }
-        console.log(this.secretWord);
+        //console.log(this.secretWord);
 
         this.secretWord = this.secretWord.toLowerCase()
 
@@ -48,16 +66,20 @@ class Shrugman {
 
     }
 
+
     play() {
         this.playerName();
 
+        //letters of the player
         let input;
+
         let anotherRound;
+
+
         let indexOfInput;
         let secretWordArr;
         let emptyWordArr;
         let joinedSecretWord;
-
         let alphabet;
         let alphabetArr;
         let indexAlphabet;
@@ -65,18 +87,20 @@ class Shrugman {
 
 
         do {
+            //to push lock emojis 
             emptyWordArr = [];
             console.log("\n" + "😎😎😎😎😎😎😎😎😎😎😎😎" + `   LET'S START ${this.name}    `.bgRed + "😎😎😎😎😎😎😎😎😎😎😎😎 " + "\n");
+            //after every round counter should be 0
             this.counter = 0;
-            //to get a new alphabet for each iteration
+
+            //to get a new alphabet for each round
             alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
             alphabetArr = alphabet.split("");
 
+            //to get the secret word
             this.secretWordOfComputer();
 
-
-
-
+            //to get the letters of the secret word inside the array
             secretWordArr = this.secretWord.split("");
 
             secretWordArr.map(char => {
@@ -91,12 +115,12 @@ class Shrugman {
 
 
             // console.log(secretWordArr);
-            //console.log(emptyWordArr);
+            console.log(emptyWordArr);
 
 
 
 
-            //3.creating empty secret word
+            //to get the lock emojis as a string.
             joinedSecretWord = emptyWordArr.join("");
             console.log(joinedSecretWord);
             //to exit from the inner loop
@@ -110,6 +134,8 @@ class Shrugman {
                         throw new Error("🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷     GAME OVER    🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷");
                     }
                     console.log();
+
+                    //to find the index number and open the locks 
 
                     indexOfInput = secretWordArr.indexOf(input);
                     if (indexOfInput === -1) {
@@ -125,58 +151,13 @@ class Shrugman {
                             break loop1;
                         }
 
-
-                        // switch (counter) {
-                        //     case 1:
-                        //         console.log()
-                        //         console.log(`¯`.red + "\n");
-                        //         console.log("🤷")
-                        //         break;
-                        //     case 2:
-                        //         console.log(`¯\\`.red + "\n");
-                        //         console.log("🤷🤷")
-                        //         break;
-                        //     case 3:
-                        //         console.log(`¯\\_`.red + "\n");
-                        //         console.log("🤷🤷🤷")
-                        //         break;
-                        //     case 4:
-                        //         console.log(`¯\\_(`.red + "\n");
-                        //         console.log("🤷🤷🤷🤷")
-                        //         break;
-                        //     case 5:
-                        //         console.log(`¯\\_(ツ`.red + "\n");
-                        //         console.log("🤷🤷🤷🤷🤷")
-                        //         break;
-                        //     case 6:
-                        //         console.log(`¯\\_(ツ)`.red + "\n");
-                        //         console.log("🤷🤷🤷🤷🤷🤷")
-                        //         break;
-                        //     case 7:
-                        //         console.log(`¯\\_(ツ)_`.red + "\n");
-                        //         console.log("🤷🤷🤷🤷🤷🤷🤷" + "  😨😨😨 LAST  2 CHANCE  😨😨😨  ".red)
-                        //         break;
-                        //     case 8:
-                        //         console.log(`¯\\_(ツ)_/`.red + "\n");
-                        //         console.log("🤷🤷🤷🤷🤷🤷🤷🤷" + "  😰😰😰😰😰  LAST CHANCE 😰😰😰😰😰  ".red)
-                        //         break;
-                        //     case 9:
-                        //         console.log(`¯\\_(ツ)_/¯`.red + "\n");
-                        //         console.log("🤷🤷🤷🤷🤷🤷🤷🤷🤷");
-                        //         //throw new Error(`*****    ¯\\_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
-                        //         this.scoreComputer++;
-                        //         //to exit from the inner loop
-                        //         break loop1;
-                        // }
-
-
-
-
                     } else {
+
                         while (indexOfInput !== -1) {
                             //convert Upper Case of the first letters
                             if (indexOfInput === 0 || (emptyWordArr[indexOfInput - 1] === " ")) {
                                 emptyWordArr = emptyWordArr.fill(input.toUpperCase(), indexOfInput, indexOfInput + 1);
+                                //  [a,b,c,d,e,f].fill(c, 1, 4) === > [a, c, c, c, e,f]
                             } else {
                                 emptyWordArr = emptyWordArr.fill(input, indexOfInput, indexOfInput + 1);
                             }
@@ -244,7 +225,7 @@ ${this.name.toUpperCase()}: ${scorePlayerEmoji}
 
     getShrugmanEmojis() {
         let shrugEmojiStrArr = this.shrugEmojiStr.split("");
-        console.log(shrugEmojiStrArr.slice(0, this.counter).join("") + "\n");
+        console.log(shrugEmojiStrArr.slice(0, this.counter).join("") + "\n".red);
         console.log(this.shrugEmoji.slice(0, this.counter * 2) + "\n");
         if (this.counter === 7) {
 

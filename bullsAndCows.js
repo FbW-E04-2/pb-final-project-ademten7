@@ -1,5 +1,23 @@
+/*
+
+RULES OF THE GAME:
+
+*** The secret number must consist of 4 digits and each digit must be unique.
+2234 would not be an acceptable
+
+*** After each guess, the player will get a hint to help them guess better next time around.
+
+***The hint tells the player how many bulls and how many cows there were. What are bulls and cows?
+
+***If there are any matching digits and they are in their right positions, they are counted as "bulls".
+If in different positions, they are counted as "cows".
+2345  ==> 2475  ---> 2 bulls 1 bulls
+*/
 var colors = require('colors');
 const prompt = require('prompt-sync')();
+
+
+
 class BullsAndCows {
     computer;
     input;
@@ -14,10 +32,12 @@ class BullsAndCows {
     numberOfComputer() {
         let computerArr;
         do {
-            this.computer = String(Math.floor(Math.random() * 9000 + 1000)).split("");
-
+            //to get number which consist of four digit(not different);
+            this.computer = String(Math.floor(Math.random() * 9000 + 1000)).split(""); //between 1000-9999(includes) 
+            console.log(this.computer);
             //1.way to create four different digits
-            computerArr = this.computer.filter((el, index) => el !== this.computer[index + 1] && el !== this.computer[index + 2] && el !== this.computer[index + 3]);
+            computerArr = this.computer.filter((el, index) => el !== this.computer[index + 1] &&
+                el !== this.computer[index + 2] && el !== this.computer[index + 3]);
 
 
             //2. way to create four different digits
@@ -27,7 +47,7 @@ class BullsAndCows {
         } while (computerArr.length !== 4);
         // this.computer = Number(this.computer.join(""));
         // console.log();
-        console.log(this.computer);
+        //console.log(this.computer);
     }
 
     numberOfUser() {
@@ -56,7 +76,9 @@ class BullsAndCows {
                         throw new Error("************************************     GAME OVER    ***********************************************".america);
                     }
                     console.log();
-                    if (this.input / 1000 < 1 || this.input / 1000 >= 10) {
+
+
+                    if (this.input < 1000 || this.input >= 10000) {
                         //throw new Error("!!!!!! You have to enter the   4 digit numbers  !!!!!!".red + "\n")
                         console.log("You have to enter the number between 1000 and 9999")
                     }

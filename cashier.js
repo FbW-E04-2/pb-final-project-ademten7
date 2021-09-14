@@ -7,12 +7,15 @@ class Cashier {
 
     }
 
+    //to select the product and quantity
     productSelection() {
         let forward;
         let input;
         let quantity;
         let tip;
         do {
+
+
 
             input = prompt(`SELECT YOUR PRODUCT FROM THE LIST:Milk,Meat,Bread,Water,Fish,Eggs,Yogurt,Cheese,Pizza,Butter,Sugar,Pineapples: `);
             quantity = prompt("HOW MANY PRODUCT DO YOU WANT TO BUY:")
@@ -43,7 +46,7 @@ class Cashier {
                     break;
                 case "pizza":
                     this.amount += 3.90 * quantity;
-
+                    break;
                 case "butter":
                     this.amount += 5.12 * quantity;
                     break;
@@ -51,36 +54,39 @@ class Cashier {
                     this.amount += 2.56 * quantity;
                     break;
                 case "pineapples":
+                    this.amount += 2.56 * quantity;
                     break;
                 default:
                     console.log("You enter wrong product:");
+                    break;
             }
-
+            //to continue selection
             forward = parseInt(prompt(`DO YOU WANT TO BUY SOMETHING ELSE: PLEASE PRESS FOR YES:1, FOR NO:0   `));
 
         } while (forward == 1);
         tip = parseInt(prompt("PLEASE ENTER YOUR TIP AMOUNT:  "))
         this.amount += tip;
+        this.amount = this.amount.toFixed(2)
         console.log(`The total price is: ${this.amount} €`.bgBlue.yellow);
 
     }
 
     payment() {
-        let payType;
-        this.productSelection();
+            let payType;
+            this.productSelection();
 
-        payType = prompt(`WHICH PAYMENT TYPE DO YOU WANT TO PAY: CARD OR CASH? `)
-        if (payType.toLowerCase() === "card") {
-            console.log("WARNING!*****Sorry you have insufficient credit balance, please pay cash*****".bgRed.italic);
+            payType = prompt(`WHICH PAYMENT TYPE DO YOU WANT TO PAY: CARD OR CASH? `)
+            if (payType.toLowerCase() === "card") {
+                console.log("WARNING!*****Sorry you have insufficient credit balance, please pay cash*****".bgRed.italic);
 
-            this.calculator();
+                this.calculator();
 
-        } else if (payType.toLocaleLowerCase() === "cash") {
+            } else if (payType.toLocaleLowerCase() === "cash") {
 
-            this.calculator();
+                this.calculator();
+            }
         }
-    }
-
+        //to calculate every 
     calculator() {
 
         let getBack;
@@ -108,8 +114,8 @@ class Cashier {
 
             remain = cash - this.amount;
             getBack = remain;
-            twenty = Math.floor(remain / 20);
-            remain %= 20;
+            twenty = Math.floor(remain / 20); //to get the integer number
+            remain %= 20; //to get the remain after division
             ten = Math.floor(remain / 10);
             remain %= 10;
             five = Math.floor(remain / 5);

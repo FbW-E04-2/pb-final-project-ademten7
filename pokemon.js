@@ -21,8 +21,8 @@ class Pokemon {
         }
         console.log(`${this.name} status:
        ----------------
-        health: ${Number(this.health)}
-        magic : ${Number(this.magic)} 
+        health: ${(this.health)}
+        magic : ${(this.magic)} 
         ---------------`.bgRed);
     }
 
@@ -38,7 +38,7 @@ class Pokemon {
             obj.health -= this.skills[indexOfSkills].amountOfDamage;
             this.showStatus();
             obj.showStatus();
-        } else {
+        } else { //his.magic < this.skills[indexOfSkills].requiredMagic
             console.log(`${this.name} has not enough magic, cannot launch attack to ${obj.name}`.green);
             input = prompt(`Do you want to load more magic for "${this.name}". Please enter yes or no:    `)
             if (input === "yes") {
@@ -94,7 +94,7 @@ let poisonGas = new AttackSkills("Poison Gas", 30, 25);
 //Charmeleon skills:
 charmeleon.learnAttackSkills(eggBomb);
 charmeleon.learnAttackSkills(poisonGas);
-//console.log(charmeleon.skills);
+console.log(charmeleon.skills);
 
 
 //Wartortle skills:
