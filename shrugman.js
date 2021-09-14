@@ -9,7 +9,9 @@ class Shrugman {
     book = ["Inferno", "The Institute", "Billy Summer", "Clean Code", "A Slow Fire Burning", "The Noise", "Ground Zero"];
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
     city = ["Kathmandu", "Tehran", "Berlin", "Ankara", "Bucharest", "Brasilia", "Mogadishu", "Valletta"]
-
+    shrugEmojiStr = "¯\\_(ツ)_/¯";
+    shrugEmoji = "🤷🤷🤷🤷🤷🤷🤷🤷🤷";
+    counter;
     //1.Enter the player name
     playerName() {
         this.name = prompt("Please enter your name:   ".bgBlue);
@@ -55,7 +57,7 @@ class Shrugman {
         let secretWordArr;
         let emptyWordArr;
         let joinedSecretWord;
-        let counter;
+
         let alphabet;
         let alphabetArr;
         let indexAlphabet;
@@ -64,8 +66,8 @@ class Shrugman {
 
         do {
             emptyWordArr = [];
-            console.log("\n" + "😎😎😎😎😎😎😎😎😎😎😎😎" + `   LET'S START ${this.name}    `.bgRed + "😎😎😎😎😎😎😎😎😎😎 " + "\n");
-            counter = 0;
+            console.log("\n" + "😎😎😎😎😎😎😎😎😎😎😎😎" + `   LET'S START ${this.name}    `.bgRed + "😎😎😎😎😎😎😎😎😎😎😎😎 " + "\n");
+            this.counter = 0;
             //to get a new alphabet for each iteration
             alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
             alphabetArr = alphabet.split("");
@@ -112,48 +114,60 @@ class Shrugman {
                     indexOfInput = secretWordArr.indexOf(input);
                     if (indexOfInput === -1) {
                         console.log("\n" + joinedSecretWord + "\n");
-                        counter++;
-                        switch (counter) {
-                            case 1:
-                                console.log(`¯`.red + "\n");
-                                console.log("🤷")
-                                break;
-                            case 2:
-                                console.log(`¯\\`.red + "\n");
-                                console.log("🤷🤷")
-                                break;
-                            case 3:
-                                console.log(`¯\\_`.red + "\n");
-                                console.log("🤷🤷🤷")
-                                break;
-                            case 4:
-                                console.log(`¯\\_(`.red + "\n");
-                                console.log("🤷🤷🤷🤷")
-                                break;
-                            case 5:
-                                console.log(`¯\\_(ツ`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷")
-                                break;
-                            case 6:
-                                console.log(`¯\\_(ツ)`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷🤷")
-                                break;
-                            case 7:
-                                console.log(`¯\\_(ツ)_`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷🤷🤷" + "  😨😨😨 LAST  2 CHANCE  😨😨😨  ".red)
-                                break;
-                            case 8:
-                                console.log(`¯\\_(ツ)_/`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷🤷🤷🤷" + "  😰😰😰😰😰  LAST CHANCE 😰😰😰😰😰  ".red)
-                                break;
-                            case 9:
-                                console.log(`¯\\_(ツ)_/¯`.red + "\n");
-                                console.log("🤷🤷🤷🤷🤷🤷🤷🤷🤷");
-                                //throw new Error(`*****    ¯\\_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
-                                this.scoreComputer++;
+                        this.counter++;
+
+                        //to get shrugman emojis call the function
+                        this.getShrugmanEmojis();
+                        if (this.counter === 9) {
+                            this.scoreComputer++;
+                            console.log("🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷      GAME OVER YOU LOST       🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷 ".bgRed)
                                 //to exit from the inner loop
-                                break loop1;
+                            break loop1;
                         }
+
+
+                        // switch (counter) {
+                        //     case 1:
+                        //         console.log()
+                        //         console.log(`¯`.red + "\n");
+                        //         console.log("🤷")
+                        //         break;
+                        //     case 2:
+                        //         console.log(`¯\\`.red + "\n");
+                        //         console.log("🤷🤷")
+                        //         break;
+                        //     case 3:
+                        //         console.log(`¯\\_`.red + "\n");
+                        //         console.log("🤷🤷🤷")
+                        //         break;
+                        //     case 4:
+                        //         console.log(`¯\\_(`.red + "\n");
+                        //         console.log("🤷🤷🤷🤷")
+                        //         break;
+                        //     case 5:
+                        //         console.log(`¯\\_(ツ`.red + "\n");
+                        //         console.log("🤷🤷🤷🤷🤷")
+                        //         break;
+                        //     case 6:
+                        //         console.log(`¯\\_(ツ)`.red + "\n");
+                        //         console.log("🤷🤷🤷🤷🤷🤷")
+                        //         break;
+                        //     case 7:
+                        //         console.log(`¯\\_(ツ)_`.red + "\n");
+                        //         console.log("🤷🤷🤷🤷🤷🤷🤷" + "  😨😨😨 LAST  2 CHANCE  😨😨😨  ".red)
+                        //         break;
+                        //     case 8:
+                        //         console.log(`¯\\_(ツ)_/`.red + "\n");
+                        //         console.log("🤷🤷🤷🤷🤷🤷🤷🤷" + "  😰😰😰😰😰  LAST CHANCE 😰😰😰😰😰  ".red)
+                        //         break;
+                        //     case 9:
+                        //         console.log(`¯\\_(ツ)_/¯`.red + "\n");
+                        //         console.log("🤷🤷🤷🤷🤷🤷🤷🤷🤷");
+                        //         //throw new Error(`*****    ¯\\_(ツ)_/¯   You completed shrugman emoji. You lost!!!  :(   *****`.bgRed)
+                        //         this.scoreComputer++;
+                        //         //to exit from the inner loop
+                        //         break loop1;
+                        // }
 
 
 
@@ -194,9 +208,10 @@ class Shrugman {
                         break;
                     }
 
-                } while (true);
+                }
+                while (true);
 
-            this.score();
+            this.getScore();
 
 
             anotherRound = prompt("DO YOU WANT CONTINUE TO PLAY? PRESS YES OR NO ==>     ".red);
@@ -204,7 +219,7 @@ class Shrugman {
 
     }
 
-    score() {
+    getScore() {
         let scoreComputerEmoji = "";
         let scorePlayerEmoji = "";
         for (let i = 0; i < this.scoreComputer; i++) {
@@ -220,6 +235,21 @@ class Shrugman {
 COMPUTER: ${scoreComputerEmoji}
 ${this.name.toUpperCase()}: ${scorePlayerEmoji}
 --------------`.bgBrightMagenta.bold + "\n");
+
+    }
+    getShrugmanEmojis() {
+        let shrugEmojiStrArr = this.shrugEmojiStr.split("");
+        console.log(shrugEmojiStrArr.slice(0, this.counter).join("") + "\n");
+        console.log(this.shrugEmoji.substring(0, this.counter) + "\n");
+        if (this.counter === 7) {
+
+            console.log("😨😨😨 LAST  2 CHANCE  😨😨😨  ".red + "\n");
+
+        } else if (this.counter === 8) {
+
+            console.log("😰😰😰😰😰  LAST CHANCE 😰😰😰😰😰  ".red + "\n")
+        }
+
 
     }
 
