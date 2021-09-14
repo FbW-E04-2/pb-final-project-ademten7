@@ -10,7 +10,7 @@ class Shrugman {
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
     city = ["Kathmandu", "Tehran", "Berlin", "Ankara", "Bucharest", "Brasilia", "Mogadishu", "Valletta"]
     shrugEmojiStr = "¯\\_(ツ)_/¯";
-    shrugEmoji = "🤷🤷🤷🤷🤷🤷🤷🤷🤷";
+    shrugEmoji = "🤷 🤷 🤷 🤷 🤷 🤷 🤷 🤷 🤷 ";
     counter;
     //1.Enter the player name
     playerName() {
@@ -219,6 +219,8 @@ class Shrugman {
 
     }
 
+
+
     getScore() {
         let scoreComputerEmoji = "";
         let scorePlayerEmoji = "";
@@ -237,10 +239,13 @@ ${this.name.toUpperCase()}: ${scorePlayerEmoji}
 --------------`.bgBrightMagenta.bold + "\n");
 
     }
+
+
+
     getShrugmanEmojis() {
         let shrugEmojiStrArr = this.shrugEmojiStr.split("");
         console.log(shrugEmojiStrArr.slice(0, this.counter).join("") + "\n");
-        console.log(this.shrugEmoji.substring(0, this.counter) + "\n");
+        console.log(this.shrugEmoji.slice(0, this.counter * 2) + "\n");
         if (this.counter === 7) {
 
             console.log("😨😨😨 LAST  2 CHANCE  😨😨😨  ".red + "\n");
