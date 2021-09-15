@@ -38,7 +38,7 @@ class Pokemon {
             obj.health -= this.skills[indexOfSkills].amountOfDamage;
             this.showStatus();
             obj.showStatus();
-        } else { //his.magic < this.skills[indexOfSkills].requiredMagic
+        } else { //this.magic < this.skills[indexOfSkills].requiredMagic
             console.log(`${this.name} has not enough magic, cannot launch attack to ${obj.name}`.green);
             input = prompt(`Do you want to load more magic for "${this.name}". Please enter yes or no:    `)
             if (input === "yes") {
@@ -115,10 +115,11 @@ let pokemon = charmeleon;
 let indexOfSkill;
 let enemy = wartortle;
 let forward;
+//to use multiple attack
 do {
 
     indexOfSkill = parseInt(prompt("Choose skill of your pokemon:".bgGreen));
-    // enemy = prompt("Which pokemon do you want to attack?:    ".bgRed);
+    
 
     pokemon.attack(indexOfSkill, enemy);
 

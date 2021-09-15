@@ -1,9 +1,9 @@
 /*
 
 RULES OF THE GAME:
-
+*** There are two players (Computer and user)
 *** The secret number must consist of 4 digits and each digit must be unique.
-2234 would not be an acceptable
+    2234 would not be an acceptable
 
 *** After each guess, the player will get a hint to help them guess better next time around.
 
@@ -11,7 +11,7 @@ RULES OF THE GAME:
 
 ***If there are any matching digits and they are in their right positions, they are counted as "bulls".
 If in different positions, they are counted as "cows".
-2345  ==> 2475  ---> 2 bulls 1 bulls
+2345  ==> 2475  ---> 2 bulls 1cow
 */
 var colors = require('colors');
 const prompt = require('prompt-sync')();
@@ -29,6 +29,14 @@ class BullsAndCows {
         this.name = prompt("Please enter your name:   ".bgGreen);
     }
 
+    // do{
+
+    //     //statement
+
+    // }while(condition)
+
+
+
     numberOfComputer() {
         let computerArr;
         do {
@@ -44,7 +52,7 @@ class BullsAndCows {
             //bool = (computer[0] === computer[1] || computer[0] === computer[2] || computer[0] === computer[3]) ||
             // (computer[1] === computer[2] || computer[1] === computer[3]) || (computer[2] === computer[3])
 
-        } while (computerArr.length !== 4);
+        } while (computerArr.length !== 4)
         // this.computer = Number(this.computer.join(""));
         // console.log();
         //console.log(this.computer);
@@ -80,9 +88,10 @@ class BullsAndCows {
 
                     if (this.input < 1000 || this.input >= 10000) {
                         //throw new Error("!!!!!! You have to enter the   4 digit numbers  !!!!!!".red + "\n")
-                        console.log("You have to enter the number between 1000 and 9999")
+                        console.log("You have to enter the number between 1000 and 10000")
                     }
                     this.input = String(this.input).split("");
+                    //the player have to  enter for digit number 
                     inputArr = this.input.filter((el, index) => el !== this.input[index + 1] && el !== this.input[index + 2] && el !== this.input[index + 3]);
                     if (inputArr.length !== 4) {
                         // throw new Error("You have to enter 4 different integer number".bgRed);

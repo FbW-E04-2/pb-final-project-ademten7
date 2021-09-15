@@ -5,10 +5,10 @@ RULES OF THE GAME:
 while the other player tries to guess the word by asking what letters it contains. 
 
 ---Every wrong guess brings them one step closer to losing and we draw the shrug emoji.
-It consists of exactly 10 characters:
+It consists of exactly 9 characters:
 
 
-----If the user has already guessed this letter once, ask them for another letter.
+---If the user has already guessed this letter once, ask them for another letter.
 
 ---The secret title is displayed masked - every character except spaces is represented by a 🔒.
 
@@ -27,7 +27,8 @@ class Shrugman {
     movie = ["The Shawshank Redemption", "The Godfather", "Forrest Gump", "Life is Beautiful", "The Green Mile", "The Matrix Resurrections"];
     city = ["Kathmandu", "Tehran", "Berlin", "Ankara", "Bucharest", "Brasilia", "Mogadishu", "Valletta"]
     shrugEmojiStr = "¯\\_(ツ)_/¯";
-    shrugEmoji = "🤷 🤷 🤷 🤷 🤷 🤷 🤷 🤷 🤷 ";
+    //     "¯\_(ツ)_/¯";
+    shrugEmoji = "🤷🤷🤷🤷🤷🤷🤷🤷🤷";
     counter;
     //1.Enter the player name
     playerName() {
@@ -115,7 +116,7 @@ class Shrugman {
 
 
             // console.log(secretWordArr);
-            console.log(emptyWordArr);
+            // console.log(emptyWordArr);
 
 
 
@@ -176,6 +177,7 @@ class Shrugman {
                     }
                     indexAlphabet = alphabetArr.indexOf(input);
                     alphabetArr = alphabetArr.fill("🤐", indexAlphabet, indexAlphabet + 1);
+                    //Zipper-Mouth Face 
                     console.log("\n" + alphabetArr.join("") + "\n");
 
                     guess = prompt("DO YOU WANT TO GUESS THE TITLE:".bgRed);
@@ -201,7 +203,7 @@ class Shrugman {
     }
 
 
-
+    //to get the scoreboard
     getScore() {
         let scoreComputerEmoji = "";
         let scorePlayerEmoji = "";
@@ -224,9 +226,9 @@ ${this.name.toUpperCase()}: ${scorePlayerEmoji}
 
 
     getShrugmanEmojis() {
-        let shrugEmojiStrArr = this.shrugEmojiStr.split("");
+        let shrugEmojiStrArr = this.shrugEmojiStr.split(""); //        "¯\\_(ツ)_/¯";
         console.log(shrugEmojiStrArr.slice(0, this.counter).join("") + "\n".red);
-        console.log(this.shrugEmoji.slice(0, this.counter * 2) + "\n");
+        console.log(this.shrugEmoji.slice(0, this.counter) + "\n");
         if (this.counter === 7) {
 
             console.log("😨😨😨 LAST  2 CHANCE  😨😨😨  ".red + "\n");
